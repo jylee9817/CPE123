@@ -15,7 +15,7 @@ function drawFlower()
 
       //stem of the flower - bezierVertex
       /*
-         startshape();
+         beginShape();
             bezierVertex();
          endShape();
       */
