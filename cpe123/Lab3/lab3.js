@@ -1,5 +1,5 @@
-//variables
-var isClick;
+//variable
+var isPressed; 
 
 function setup() 
 {
@@ -16,7 +16,7 @@ function setup()
    fill(0,107,40);
    ellipse(-100,450,1200,300);
 
-   isClick = false;
+   isPressed = false;
 }
 
 function drawFlower()
@@ -98,21 +98,51 @@ function drawFlower()
 function drawEye()
 {
    //the pupil of the eye - bezierVertex
-   while(i<10 && isClick){
-      
-   }
-   while(i>10 && !isClick){
-      eye is closed slowly
-   }
+   push();
+      translate(300,150);
+
+      noStroke();
+      fill(255);
+      if(isPressed)
+      {
+         for(var i=0;i<100;i++)
+         {
+            beginShape();
+               vertex(0,-70);
+               bezierVertex(-0.2*i,-0.6*i,-0.2*i,0.6*i,0,70);
+               bezierVertex(0.2*i,0.6*i,0.2*i,-0.6*i,0,-70);
+            endShape();
+         }
+         fill(0);
+         ellipse(0,0,30,30);
+      }
+      else
+      {
+         fill(92,51,0);
+         ellipse(0,0,150);
+         for(var i=100;i>1;i--)
+         {
+            beginShape();
+               vertex(0,-70);
+               bezierVertex(-0.2*i,-0.6*i,-0.2*i,0.6*i,0,70);
+               bezierVertex(0.2*i,0.6*i,0.2*i,-0.6*i,0,-70);
+            endShape();
+         }
+      }
+
+   pop();
 }
 
 function draw() 
 {
    drawFlower();
+   drawEye();
 }
 
-function whileClicked()
+function mousePressed()
 {
-   isClick = !isClick;
-   drawEye();
+   if(mouseX < 600 && mouseY <400)
+   {
+      isPressed = !isPressed;   
+   }
 }
