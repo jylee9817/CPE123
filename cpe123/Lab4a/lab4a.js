@@ -9,7 +9,7 @@ function setup()
 
 function returnFruitType()
 {
-   fruitType =  random(2);
+   fruitType =  Math.floor(random(2.99));
 }
 
 function drawApple(x,y)
