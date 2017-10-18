@@ -1,4 +1,5 @@
 var isPressed;
+var openEye;
 var flowerScale;
 var flowerX;
 var flowerY;
@@ -9,6 +10,7 @@ function setup()
    createCanvas(800, 400);
    
    isPressed = false;
+   openEye = false;
 
    flowerScale = 0.2;   
    flowerX=400;
@@ -146,6 +148,46 @@ function drawEye()
       }
 
    pop();
+}
+
+function drawBigEye()
+{
+   //the pupil of the eye - bezierVertex
+  if(openEye)
+  {
+    push();
+      translate(460,330);
+      rotate(PI/2);
+      scale(2);
+
+      noStroke();
+      fill(200,35,29,100);
+     for(var i=0;i<100;i++)
+     {
+        beginShape();
+           vertex(0,-70);
+           bezierVertex(-0.2*i,-0.6*i,-0.2*i,0.6*i,0,70);
+           bezierVertex(0.2*i,0.6*i,0.2*i,-0.6*i,0,-70);
+        endShape();
+     }
+     fill(0);
+    pop();
+     if(mouseX > 350 && mouseX < 570 && mouseY > 260 && mouseY < 400)
+     	ellipse(mouseX,mouseY,60,60);
+     else
+		ellipse(460,330,60,60);    
+  }
+  else
+  {
+	   fill(0);
+	   push();
+	      translate(400,350);
+	      rotate(-PI/6);
+	      ellipse(0,0,500,250);
+	   pop();
+	   ellipse(575,500,250,500);
+	   triangle(150,400,325,400,325,240);
+  } 
 }
 
 function draw() 
@@ -303,7 +345,6 @@ function draw()
 
    if (isPressed) 
    {
-      frameRate(5)
       tentacle()
    }
 }   
@@ -340,6 +381,7 @@ function tentacle()
 
    drawFlower();
    drawEye();
+   drawBigEye();
 
    //manor
    fill(0)
@@ -526,7 +568,14 @@ function mouseClicked()
 {
    if(mouseX > 545 && mouseX < 590 && mouseY > 89 && mouseY < 149)
    {
-      isPressed = !isPressed;
+   	  isPressed = !isPressed;
       flowerColor = !flowerColor;
+   }
+
+   if(mouseX < flowerX + 150*flowerScale && mouseX > flowerX - 150*flowerScale 
+   	&& mouseY < flowerY + 150*flowerScale && mouseY > flowerY - 150*flowerScale 
+   	&& isPressed)
+   {
+   		openEye = !openEye;
    }
 }
