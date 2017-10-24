@@ -172,10 +172,17 @@ function drawBigEye()
      }
      fill(0);
     pop();
-     if(mouseX > 350 && mouseX < 570 && mouseY > 260 && mouseY < 400)
+     if(mouseX > 340 && mouseX < 580 && mouseY > 310 && mouseY < 350)
      	ellipse(mouseX,mouseY,60,60);
      else
-		ellipse(460,330,60,60);    
+     	if(mouseX < 340)
+     		ellipse(340,mouseY,60,60);
+     	if(mouseX > 580)
+     		ellipse(580,mouseY,60,60);
+     	if(mouseY < 310)
+     		ellipse(mouseX,310,60,60);
+     	if(mouseY > 350)
+     		ellipse(mouseX,350,60,60);   
   }
   else
   {
