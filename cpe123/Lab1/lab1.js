@@ -110,8 +110,8 @@ function draw()
    //Blue Pupil
    fill(121,225,149);
 
-   arc(300,365,movePupil(35),130,PI/2,3*PI/2);
-   arc(300,365,movePupil(35),130,3*PI/2,PI/2);
+   arc(300,365,35,130,PI/2,3*PI/2);
+   arc(300,365,35,130,3*PI/2,PI/2);
 
    arc(500,365,35,130,PI/2,3*PI/2);
    arc(500,365,35,130,3*PI/2,PI/2);
