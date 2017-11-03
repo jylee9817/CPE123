@@ -1,18 +1,21 @@
 var x,y;
 var r,g,b,a;
+var maxTheta;
 
 function setup() 
 {
 	createCanvas(600,400);
 	background(0);
 
+	a = 255;
+	r = 0;
+	maxTheta = 0;
+	noStroke();
 	drawSnail();
-	a = 0;
 }
 
 function drawSnail()
 {
-	noStroke();
 	fill(150,126,66);
 
 	push();
@@ -40,20 +43,25 @@ function drawSnail()
 
 function drawShell()
 {
-	for(var i = 0; i < 28*PI/3; i += PI/30)
+	stroke(0);
+	g = 100;
+	b = 255;
+	r += 1;
+	a -= 4/5;
+
+	for(var i = 0; i < maxTheta; i += PI/30)
 	{
 		x = 330 + (-1.5*Math.pow(Math.E,i*0.15))*cos(i);
 		y = 220 + (-1.5*Math.pow(Math.E,i*0.15))*sin(i);
 
-		r = random(50,180);
-		g = random(50,180);
-		b = random(50,180);
-		a ++;
-
 		fill(color(r,g,b,a));
-		stroke(0);
 		ellipse(x,y,i/PI*9);
 	}
+	
+	maxTheta += PI/30;
+
+	if(maxTheta > 28*PI/3)
+		noLoop();
 }
 
 function draw() 
