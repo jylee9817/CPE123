@@ -1,6 +1,11 @@
 //variable
 var isPressed; 
 
+function getImpCircle(x,y,cx,cy,r)
+{
+   return pow((x-cx),2) + pow((y-cy),2) - pow(r,2);
+}
+
 function setup() 
 {
    createCanvas(600, 400);
@@ -140,9 +145,9 @@ function draw()
 }
 
 function mousePressed()
-{
-   if(mouseX < 600 && mouseY <400)
+{   
+   if(getImpCircle(mouseX,mouseY,300,150,75) < 0)
    {
-      isPressed = !isPressed;   
+      isPressed = !isPressed;
    }
 }

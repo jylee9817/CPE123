@@ -6,18 +6,15 @@ function setup()
 	createCanvas(600,400);
 	background(0);
 
-	robotY = 0;
-	robotX = 30;
-
 	noLoop();
 }
 
-function drawRobot()
+function drawRobot(x,y,rot,sc,robotX,robotY)
 {
 	push();
-		translate(random(0,600),random(0,400));
-		rotate(random(0,2*PI));
-		scale(random(0.5,2));
+		translate(x,y);
+		rotate(rot);
+		scale(sc);
 		strokeWeight(5);
 		stroke(0);
 		fill(191);
@@ -43,6 +40,6 @@ function draw()
 {
 	for(var i=0; i<20; i++)
 	{
-		drawRobot();
+		drawRobot(random(600),random(400),random(2*PI),random(0.5,1.5),30,0);
 	}
 }	
